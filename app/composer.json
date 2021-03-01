@@ -1,6 +1,6 @@
 {
-    "type": "project",
-    "license": "proprietary",
+    "type": "patterns",
+    "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
