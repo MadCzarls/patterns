@@ -9,7 +9,7 @@ use App\Interface\DietInterface;
 class MuscleGainTrainingDiet implements DietInterface
 {
    public function getCaloriesIntake(): int
-    {
+   {
         return 3000;
-    }
+   }
 }
