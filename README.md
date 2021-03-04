@@ -1,13 +1,16 @@
 # Description
 Examples of design patterns implementations.
 
-### Factory
+## Abstract Factory
+###Demo at: `/pattern/abstract-factory`.
 Training plan:
 - Muscle gain
 - Weight loss
 
-Includes exercise sets and diet based on sex and weight.
+Abstract factory example implementation utilizing dependency injection and service locator.
 
 # TODO
-* remove unnecessary libraries
 * README cleanup
+* Psalm? https://psalm.dev/
+* Upgrade to PHP 8.1 and use enum ; remove myclabs/php-enum then
+* Unittests

@@ -9,11 +9,20 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Factory: {{ factory.getName() }}</h1>
+    <h1>Pick training plan</h1>
 
     <ul>
-        <li>Your diet's calories intake should be around <code>{{ diet.getCaloriesIntake() }}</code></li>
-        <li>Your exercise should include <code>{{ exerciseSet.getExercises() | join(', ') }}</code></li>
+        <li>
+            <a href="{{ path('abstractFactoryType', {'factoryName': constant('App\\Enum\\FactoryTypeEnum::MUSCLE_GAIN')}) }}">
+                Muscle gain
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('abstractFactoryType', {'factoryName': constant('App\\Enum\\FactoryTypeEnum::WEIGHT_LOSS')}) }}">
+                Weight loss
+            </a>
+        </li>
     </ul>
+
 </div>
 {% endblock %}
