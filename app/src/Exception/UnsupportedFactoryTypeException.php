@@ -6,6 +6,6 @@ namespace App\Exception;
 
 use Exception;
 
-class UnsupportedFactoryTypeException extends Exception
+final class UnsupportedFactoryTypeException extends Exception
 {
 }

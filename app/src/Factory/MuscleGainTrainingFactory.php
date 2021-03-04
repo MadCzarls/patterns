@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Interface\DietInterface;
+use App\Enum\FactoryTypeEnum;
+use App\FactoryObject\MuscleGainTrainingCaloriesIntake;
+use App\FactoryObject\MuscleGainTrainingExerciseSet;
+use App\Interface\CaloriesIntakeInterface;
 use App\Interface\ExerciseSetInterface;
 use JetBrains\PhpStorm\Pure;
 
@@ -15,13 +18,13 @@ class MuscleGainTrainingFactory extends AbstractTrainingFactory
         return new MuscleGainTrainingExerciseSet();
     }
 
-    #[Pure] public function createDiet(): DietInterface
+    #[Pure] public function createCaloriesIntake(): CaloriesIntakeInterface
     {
-        return new MuscleGainTrainingDiet();
+        return new MuscleGainTrainingCaloriesIntake();
     }
 
-    public function getName(): string
+    #[Pure] public function getName(): FactoryTypeEnum
     {
-        return 'MuscleGainTrainingFactory';
+        return new FactoryTypeEnum(FactoryTypeEnum::MUSCLE_GAIN);
     }
 }

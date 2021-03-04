@@ -4,24 +4,38 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Interface\DietInterface;
+use App\Enum\FactoryTypeEnum;
+use App\FactoryObject\WeightLossTrainingCaloriesIntake;
+use App\FactoryObject\WeightLossTrainingExerciseSet;
+use App\Interface\CaloriesIntakeInterface;
 use App\Interface\ExerciseSetInterface;
+use App\Mock\Session;
 use JetBrains\PhpStorm\Pure;
 
 class WeightLossTrainingFactory extends AbstractTrainingFactory
 {
+    private Session $session;
+
+    public function __construct(Session $session)
+    {
+        $this->session = $session;
+    }
+
     #[Pure] public function createExerciseSet(): ExerciseSetInterface
     {
         return new WeightLossTrainingExerciseSet();
     }
 
-    #[Pure] public function createDiet(): DietInterface
+    public function createCaloriesIntake(): CaloriesIntakeInterface
     {
-        return new WeightLossTrainingDiet();
+        $diet = new WeightLossTrainingCaloriesIntake();
+        $diet->setUser($this->session->getLoggedInUser());
+
+        return $diet;
     }
 
-    public function getName(): string
+    #[Pure] public function getName(): FactoryTypeEnum
     {
-        return 'WeightLossTrainingFactory';
+        return new FactoryTypeEnum(FactoryTypeEnum::WEIGHT_LOSS);
     }
 }

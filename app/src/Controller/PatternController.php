@@ -4,34 +4,37 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Exception\UnsupportedFactoryTypeException;
-use App\Factory\MuscleGainTrainingFactory;
-use App\Factory\WeightLossTrainingFactory;
-use App\Interface\FactoryTypeInterface;
+use App\Service\TrainingFactoryLocator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PatternController extends AbstractController
 {
-    #[Route('/pattern/abstract-factory/{type}', name: 'abstractFactory')]
-    public function index(int $type): Response
+    #[Route('/pattern/abstract-factory', name: 'abstractFactory')]
+    public function abstractFactory(): Response
     {
-        $factory = match ($type) {
-            FactoryTypeInterface::FACTORY_TRAINING_MUSCLE_GAIN => new MuscleGainTrainingFactory(),
-            FactoryTypeInterface::FACTORY_TRAINING_WEIGHT_LOSS => new WeightLossTrainingFactory(),
-            default => throw new UnsupportedFactoryTypeException(sprintf('Unsupported abstract factory type: "%s"', $type)),
-        };
+        return $this->render(
+            'pattern/abstractFactory.html.twig'
+        );
+    }
 
-       $diet = $factory->createDiet();
-       $exerciseSet = $factory->createExerciseSet();
+    #[Route('/pattern/abstract-factory/{factoryName}', name: 'abstractFactoryType')]
+    public function abstractFactoryType(
+        string $factoryName,
+        TrainingFactoryLocator $trainingFactoryLocator
+    ): Response
+    {
+        $factory = $trainingFactoryLocator->locate($factoryName);
+
+        $caloriesIntake = $factory->createCaloriesIntake();
+        $exerciseSet = $factory->createExerciseSet();
 
         return $this->render(
-            'pattern/abstractFactory.html.twig',
-            [
-             'factory'     => $factory,
-             'diet'        => $diet,
-             'exerciseSet' => $exerciseSet,
+            'pattern/abstractFactoryTraining.html.twig', [
+             'factory'        => $factory,
+             'caloriesIntake' => $caloriesIntake,
+             'exerciseSet'    => $exerciseSet,
             ]
         );
     }
