@@ -17,3 +17,8 @@ app/.env.*
 app/.phpunit
 app/.phpunit.result.cache
 app/phpunit.xml
+
+###> squizlabs/php_codesniffer ###
+/.phpcs-cache
+/phpcs.xml
+###< squizlabs/php_codesniffer ###
