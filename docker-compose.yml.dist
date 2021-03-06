@@ -1,25 +1,6 @@
 version:  '3.8'
 
 services:
-    mysql:
-        image: mysql:8.0
-        container_name: 'app.db'
-        restart: on-failure
-        command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--default-authentication-plugin=mysql_native_password']
-        cap_add:
-            - SYS_NICE
-        environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: app
-            MYSQL_USER: app_user
-            MYSQL_PASSWORD: app_pass
-        volumes:
-            - './bin/mysql/:/var/lib/mysql'
-        ports:
-            - '33306:3306'
-        networks:
-            - app_network
-
     php:
         build:
             context: docker/php
@@ -34,8 +15,6 @@ services:
         env_file:
             - docker/php/.env.web.dev # change according to your needs
             - docker/php/.env.app.dev # change according to your needs
-        depends_on:
-            - mysql
         volumes:
             - './app/:/var/www/app:cached'
         networks:
@@ -46,7 +25,6 @@ services:
         container_name: 'app.nginx'
         restart: on-failure
         depends_on:
-            - mysql
             - php
         volumes:
             - './app/:/var/www/app:cached'
