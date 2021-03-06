@@ -2,8 +2,7 @@
 Examples of design patterns implementations.
 
 ## Abstract Factory
-Abstract factory example implementation utilizing dependency injection and service locator:
-- notification parsers
+Abstract factory example implementation utilizing dependency injection and service locator.
 
 # TODO
 * README cleanup
