@@ -2,7 +2,7 @@
 Examples of design patterns implementations.
 
 ## Abstract Factory
-###Demo at: `/pattern/abstract-factory`.
+### Demo at: `/pattern/abstract-factory`.
 Training plan:
 - Muscle gain
 - Weight loss
