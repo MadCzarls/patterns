@@ -9,20 +9,28 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Pick training plan</h1>
+    <h1>Fill notification data</h1>
 
-    <ul>
-        <li>
-            <a href="{{ path('abstractFactoryType', {'factoryName': constant('App\\Enum\\FactoryTypeEnum::MUSCLE_GAIN')}) }}">
-                Muscle gain
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('abstractFactoryType', {'factoryName': constant('App\\Enum\\FactoryTypeEnum::WEIGHT_LOSS')}) }}">
-                Weight loss
-            </a>
-        </li>
-    </ul>
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
 
+    <button>Submit</button>
+
+    {{ form_end(form) }}
+
+    {% if requestHandled %}
+        Notification data:
+        <ul>
+            <li>
+                Factory name: {{ notificationDTO.getFactoryName() }}
+            </li>
+            <li>
+                Receiver: {{ notificationDTO.getReceiver() }} ({{ notificationDTO.isValidReceiver() ? 'valid' : 'not valid' }})
+            </li>
+            <li>
+                Parsed message: <code>{{ notificationDTO.getMessage() }}</code>
+            </li>
+        </ul>
+    {% endif %}
 </div>
 {% endblock %}
