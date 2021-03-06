@@ -2,11 +2,6 @@
 Examples of design patterns implementations.
 
 ## Abstract Factory
-### Demo at: `/pattern/abstract-factory`.
-Training plan:
-- Muscle gain
-- Weight loss
-
 Abstract factory example implementation utilizing dependency injection and service locator.
 
 # TODO
