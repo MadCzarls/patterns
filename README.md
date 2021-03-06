@@ -7,5 +7,5 @@ Abstract factory example implementation utilizing dependency injection and servi
 # TODO
 * README cleanup
 * Psalm? https://psalm.dev/
-* Upgrade to PHP 8.1 and use enum ; remove myclabs/php-enum then
+* Upgrade to PHP 8.1 and use native enum ; remove myclabs/php-enum then
 * Unittests

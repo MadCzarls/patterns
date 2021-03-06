@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Service;
+namespace App\Service\Notifier;
 
-use App\Enum\FactoryTypeEnum;
+use App\Enum\NotifierFactoryTypeEnum;
 use App\Exception\UnsupportedFactoryTypeException;
-use App\Factory\MuscleGainTrainingFactory;
-use App\Factory\WeightLossTrainingFactory;
+use App\Factory\Notifier\MorseCodeFactory;
+use App\Factory\Notifier\PagerFactory;
+use App\Factory\Notifier\SmsFactory;
+use App\Interface\Notifier\NotifierFactory;
 use Psr\Container\ContainerInterface;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
-class TrainingFactoryLocator implements ServiceSubscriberInterface
+class FactoryLocator implements ServiceSubscriberInterface
 {
     private ContainerInterface $locator;
 
@@ -23,12 +25,13 @@ class TrainingFactoryLocator implements ServiceSubscriberInterface
     public static function getSubscribedServices(): array
     {
         return [
-            FactoryTypeEnum::MUSCLE_GAIN => MuscleGainTrainingFactory::class,
-            FactoryTypeEnum::WEIGHT_LOSS => WeightLossTrainingFactory::class,
+            NotifierFactoryTypeEnum::MORSE_CODE => MorseCodeFactory::class,
+            NotifierFactoryTypeEnum::SMS => SmsFactory::class,
+            NotifierFactoryTypeEnum::PAGER => PagerFactory::class,
         ];
     }
 
-    public function locate(string $serviceName)
+    public function locate(string $serviceName): NotifierFactory
     {
         if ($this->locator->has($serviceName)) {
             return $this->locator->get($serviceName);

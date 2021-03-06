@@ -4,38 +4,36 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Service\TrainingFactoryLocator;
+use App\Form\Model\Notification as NotificationFormModel;
+use App\Form\NotificationType;
+use App\Service\Notifier\NotificationHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PatternController extends AbstractController
 {
     #[Route('/pattern/abstract-factory', name: 'abstractFactory')]
-    public function abstractFactory(): Response
+    public function abstractFactory(Request $request, NotificationHandler $notificationHandler): Response
     {
-        return $this->render(
-            'pattern/abstractFactory.html.twig'
-        );
-    }
+        $notificationDTO = [];
+        $requestHandled = false;
+        $notificationFormModel = new NotificationFormModel();
 
-    #[Route('/pattern/abstract-factory/{factoryName}', name: 'abstractFactoryType')]
-    public function abstractFactoryType(
-        string $factoryName,
-        TrainingFactoryLocator $trainingFactoryLocator
-    ): Response
-    {
-        $factory = $trainingFactoryLocator->locate($factoryName);
+        $form = $this->createForm(NotificationType::class, $notificationFormModel);
 
-        $caloriesIntake = $factory->createCaloriesIntake();
-        $exerciseSet = $factory->createExerciseSet();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $notificationDTO = $notificationHandler->handle($form->getData());
+            $requestHandled = true;
+        }
 
         return $this->render(
-            'pattern/abstractFactoryTraining.html.twig', [
-             'factory'        => $factory,
-             'caloriesIntake' => $caloriesIntake,
-             'exerciseSet'    => $exerciseSet,
-            ]
-        );
+            'pattern/abstractFactory.html.twig', [
+            'form' => $form->createView(),
+            'requestHandled' => $requestHandled,
+            'notificationDTO' => $notificationDTO,
+        ]);
     }
 }

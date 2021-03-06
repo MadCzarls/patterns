@@ -27,5 +27,6 @@ services:
     App\Factory\:
         resource: '../src/Factory/'
 
-    App\Mock\:
-        resource: '../src/Mock/'
+    App\Form\:
+        resource: '../src/Form/'
+        exclude: '../src/Form/Model/'
