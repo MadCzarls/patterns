@@ -2,6 +2,8 @@
 Examples of design patterns implementations.
 
 ## Abstract Factory
+> available at branch `feature/factory-abstract`, demo at route `/pattern/abstract-factory`
+
 Abstract factory example implementation utilizing dependency injection and service locator.
 
 # TODO
