@@ -11,7 +11,8 @@ RUN apt-get install -y \
     zlib1g-dev \
     libxml2-dev \
     libzip-dev \
-    unzip
+    unzip \
+    npm
 
 RUN docker-php-ext-install \
     zip \

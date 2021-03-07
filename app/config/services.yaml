@@ -21,12 +21,6 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Service\:
-        resource: '../src/Service/'
-
-    App\Factory\:
-        resource: '../src/Factory/'
-
     App\Form\:
         resource: '../src/Form/'
         exclude: '../src/Form/Model/'
