@@ -2,10 +2,6 @@
 Examples of design patterns implementations.
 
 ## Abstract Factory
-Abstract factory example implementation utilizing dependency injection and service locator.
+> available at branch `feature/factory-abstract`, demo at route `/pattern/factory-abstract`
 
-# TODO
-* README cleanup
-* Psalm? https://psalm.dev/
-* Upgrade to PHP 8.1 and use native enum ; remove myclabs/php-enum then
-* Unittests
+Abstract factory example implementation utilizing dependency injection and service locator.

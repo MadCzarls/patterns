@@ -14,8 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PatternController extends AbstractController
 {
-    #[Route('/pattern/abstract-factory', name: 'abstractFactory')]
-    public function abstractFactory(Request $request, NotificationHandler $notificationHandler): Response
+    #[Route('/pattern/factory-abstract', name: 'factoryAbstract')]
+    public function factoryAbstract(Request $request, NotificationHandler $notificationHandler): Response
     {
         $notificationDTO = [];
         $requestHandled = false;
