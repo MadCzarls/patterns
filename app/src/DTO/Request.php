@@ -67,5 +67,4 @@ class Request
     {
         return $this->headers;
     }
-    // no setter for headers - handled by doctrine's collection
 }

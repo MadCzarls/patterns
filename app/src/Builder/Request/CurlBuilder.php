@@ -13,12 +13,11 @@ class CurlBuilder extends AbstractRequestBuilder
 {
     public function build(): RequestInterface
     {
-//        @TODO unittest
         $this->validate();
 
-        $command = 'curl ';
+        $command = 'curl';
         $command .= sprintf(' -X %s', $this->getHttpMethod());
-        $command .= sprintf(' %s ', $this->getUrl());
+        $command .= sprintf(' %s', $this->getUrl());
 
         foreach ($this->getHeaders() as $header) {
             $command .= sprintf(" -H '%s: %s'", $header->getName(), $header->getValue());

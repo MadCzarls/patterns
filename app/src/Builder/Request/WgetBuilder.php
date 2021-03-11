@@ -11,12 +11,11 @@ class WgetBuilder extends AbstractRequestBuilder
 {
     public function build(): RequestInterface
     {
-//        @TODO unittest
         $this->validate();
 
-        $command = 'wget ';
+        $command = 'wget';
         $command .= sprintf(' --method %s', $this->getHttpMethod());
-        $command .= sprintf(' %s ', $this->getUrl());
+        $command .= sprintf(' %s', $this->getUrl());
 
         foreach ($this->getHeaders() as $header) {
             $command .= sprintf(" --header '%s: %s'", $header->getName(), $header->getValue());

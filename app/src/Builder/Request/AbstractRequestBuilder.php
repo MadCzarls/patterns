@@ -10,6 +10,11 @@ use App\Exception\RequestParameterException;
 use App\Interface\Request\HeaderInterface;
 use App\Interface\Request\RequestBuilderInterface;
 
+use function filter_var;
+use function sprintf;
+
+use const FILTER_VALIDATE_URL;
+
 abstract class AbstractRequestBuilder implements RequestBuilderInterface
 {
     protected ?RequestHttpMethodEnum $method = null;
@@ -55,6 +60,10 @@ abstract class AbstractRequestBuilder implements RequestBuilderInterface
 
         if (empty($this->getUrl())) {
             throw new RequestParameterException('Missing request parameter: url');
+        } else {
+            if (!filter_var($this->getUrl(), FILTER_VALIDATE_URL)) {
+                throw new RequestParameterException(sprintf("'%s' is not a valid URL", $this->getUrl()));
+            }
         }
     }
 
