@@ -7,7 +7,7 @@ namespace App\Tests\Builder\Request;
 use App\Builder\Request\WgetBuilder;
 use App\Enum\RequestHttpMethodEnum;
 
-class WgetBuilderTest extends AbstractBuilderTest
+final class WgetBuilderTest extends AbstractBuilderTest
 {
     /**
      * @param mixed[] $builderParams

@@ -7,7 +7,7 @@ namespace App\Tests\Builder\Request;
 use App\Builder\Request\CurlBuilder;
 use App\Enum\RequestHttpMethodEnum;
 
-class CurlBuilderTest extends AbstractBuilderTest
+final class CurlBuilderTest extends AbstractBuilderTest
 {
     /**
      * @param mixed[] $builderParams
