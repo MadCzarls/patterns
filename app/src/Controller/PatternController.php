@@ -37,7 +37,6 @@ class PatternController extends AbstractController
             $director = new Director();
 
             $director->setBuilder($wgetRequestBuilder);
-            $director->buildRequestCommand($form->getData());
 
             try {
                 $director->buildRequestCommand($form->getData());
